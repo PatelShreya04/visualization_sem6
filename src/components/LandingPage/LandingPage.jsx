@@ -1,12 +1,10 @@
 // src/components/LandingPage/LandingPage.jsx
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext'; // Add this import
+import { useAuth } from '../../contexts/AuthContext';
 import './LandingPage.css';
+import logoImage from './unnamed.png'; 
 
-
-// Auth Modal Component
-// In your LandingPage.jsx file
 
 // Auth Modal Component
 const AuthModal = ({ isOpen, onClose, modalType, setModalType }) => {
@@ -152,7 +150,7 @@ function LandingPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState('login'); // 'login' or 'register'
   const navigate = useNavigate();
-  const { user } = useAuth(); // Make sure useAuth is imported
+  const { user } = useAuth();
 
   useEffect(() => {
     if (user) {
@@ -168,34 +166,44 @@ function LandingPage() {
   return (
     <div className="landing-page">
       
-      {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-content">
-          <h1>NexViz : Advanced CSV Visualization</h1>
-          
-          <p className="hero-subtitle">
-            Transform your data into meaningful insights with our powerful CSV visualization tool.
-            Upload, visualize, and analyze your data in seconds.
-          </p>
-          <div className="hero-buttons">
-            <button className="primary-button" onClick={() => openModal('register')}>
-              Get Started
-            </button>
-            <button className="secondary-button" onClick={() => openModal('login')}>
-              Log In
-            </button>
-          </div>
-        </div>
-        <div className="hero-image">
-          <div className="chart-illustration">
-            <div className="bar bar-1"></div>
-            <div className="bar bar-2"></div>
-            <div className="bar bar-3"></div>
-            <div className="bar bar-4"></div>
-            <div className="bar bar-5"></div>
-          </div>
-        </div>
-      </section>
+      {/* Updated Hero Section with new logo layout */}
+<section className="hero-section">
+  <div className="hero-content">
+    <h1>NexViz : Advanced CSV Visualization</h1>
+    
+    <p className="hero-subtitle">
+      Transform your data into meaningful insights with our powerful CSV visualization tool.
+      Upload, visualize, and analyze your data in seconds.
+    </p>
+    <div className="hero-buttons">
+      <button className="primary-button" onClick={() => openModal('register')}>
+        Get Started
+      </button>
+      <button className="secondary-button" onClick={() => openModal('login')}>
+        Log In
+      </button>
+    </div>
+  </div>
+  <div className="hero-image">
+    <div className="chart-illustration">
+      {/* Logo Container - now inside chart-illustration */}
+      <div className="logo-container">
+        <img 
+          src={logoImage} 
+          alt="NexViz Logo" 
+        />
+      </div>
+      {/* Chart bars container */}
+      <div className="bars-container">
+        <div className="bar bar-1"></div>
+        <div className="bar bar-2"></div>
+        <div className="bar bar-3"></div>
+        <div className="bar bar-4"></div>
+        <div className="bar bar-5"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Features Section */}
       <section className="features-section">
